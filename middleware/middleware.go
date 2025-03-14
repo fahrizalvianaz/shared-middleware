@@ -1,11 +1,10 @@
 package middleware
 
 import (
-	"bookstore-framework/configs"
-	"bookstore-framework/pkg"
 	"net/http"
 	"strings"
 
+	configs "github.com/fahrizalvianaz/shared-configuration/configs"
 	genericResponse "github.com/fahrizalvianaz/shared-response/httputil"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"

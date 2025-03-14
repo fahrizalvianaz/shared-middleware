@@ -1,9 +1,9 @@
-package pkg
+package shared_middleware
 
 import (
-	"bookstore-framework/configs"
 	"time"
 
+	configs "github.com/fahrizalvianaz/shared-configuration/configs"
 	"github.com/golang-jwt/jwt/v5"
 )
 

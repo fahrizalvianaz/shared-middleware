@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	configs "github.com/fahrizalvianaz/shared-configuration/configs"
+	shared_middleware "github.com/fahrizalvianaz/shared-middleware"
 	genericResponse "github.com/fahrizalvianaz/shared-response/httputil"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
@@ -34,7 +35,7 @@ func JWTAuth() gin.HandlerFunc {
 
 		token, err := jwt.ParseWithClaims(
 			tokenString,
-			&pkg.Claims{},
+			&shared_middleware.Claims{},
 			func(t *jwt.Token) (interface{}, error) {
 				if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 					return nil, jwt.ErrSignatureInvalid
@@ -49,7 +50,7 @@ func JWTAuth() gin.HandlerFunc {
 			return
 		}
 
-		if claims, ok := token.Claims.(*pkg.Claims); ok && token.Valid {
+		if claims, ok := token.Claims.(*shared_middleware.Claims); ok && token.Valid {
 			ctx.Set("userID", claims.UserID)
 			ctx.Set("username", claims.Username)
 			ctx.Set("email", claims.Email)
